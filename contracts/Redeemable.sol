@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^0.8.8;
+pragma solidity ^0.8.15;
 
 import '@openzeppelin/contracts/utils/introspection/ERC165.sol';
 
@@ -15,11 +15,12 @@ import '@openzeppelin/contracts/utils/introspection/ERC165.sol';
 contract Redeemable is ERC165 {
 
 	// mapping of tokenId redeemable
-	/// @dev  status is inverted (false = redeemable, true = already redeem) in storage for gas optimisation
+	/// @dev status is inverted in storage (false = redeemable, true = already redeem) for gas optimisation
+	/// @dev by default the status is false (redeemable)
 	mapping(uint256 => bool) private _redeemable;
 
 	//The supportsInterface method MUST return true when called with 0x2f8ca953.
-	bytes4 private constant _INTERFACE_ID_REDEEM = 0x2f8ca953;
+	bytes4 private constant _INTERFACE_ID_ERC721REDEEM = 0x2f8ca953;
 
 	event Redeem(address indexed from, uint256 indexed tokenId);
 
@@ -33,8 +34,8 @@ contract Redeemable is ERC165 {
 		return !_redeemable[tokenId];
 	}
 
-	/// @notice redeeem a token
-	/// @param tokenId id of token to redeeem
+	/// @notice redeem a token
+	/// @param tokenId id of token to redeem
 	/// @dev dont forget to add a require to lock to tokenId owner
 	function redeem(uint256 tokenId) public virtual {
 		require(isRedeemable(tokenId), "Token already redeem");
@@ -42,15 +43,15 @@ contract Redeemable is ERC165 {
 		emit Redeem(msg.sender, tokenId);
 	}
 
-	/// @notice set redeeemable status, true for redeemable
-	/// @param tokenId id of token to redeeem
-	/// @param status new redeeem status
+	/// @notice set redeemable status, true for redeemable
+	/// @param tokenId id of token to redeem
+	/// @param status new redeem status
 	function _setRedeem(uint256 tokenId, bool status) internal virtual {
 		_redeemable[tokenId] = !status;
 	}
 
 	/// @inheritdoc	ERC165
 	function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
-		return interfaceId == _INTERFACE_ID_REDEEM || super.supportsInterface(interfaceId);
+		return interfaceId == _INTERFACE_ID_ERC721REDEEM || super.supportsInterface(interfaceId);
 	}
 }
