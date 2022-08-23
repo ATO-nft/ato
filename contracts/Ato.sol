@@ -61,8 +61,8 @@ contract Ato is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, EIP712, ERC72
         override 
         returns (bool) 
     {
-		require(_exists(tokenId), "ERC721Redeemable: Redeem query for nonexistent token");
-		return super.isRedeemable(tokenId);
+        require(_exists(tokenId), "ERC721Redeemable: Redeem query for nonexistent token");
+        return super.isRedeemable(tokenId);
 	}
 
 	function redeem(uint256 tokenId) 
@@ -70,9 +70,9 @@ contract Ato is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, EIP712, ERC72
         virtual 
         override
     {
-		require(_exists(tokenId), "ERC721Redeemable: Redeem query for nonexistent token");
-		require(ownerOf(tokenId) == msg.sender, "ERC721Redeemable: You are not the owner of this token");
-		super.redeem(tokenId);
+        require(_exists(tokenId), "ERC721Redeemable: Redeem query for nonexistent token");
+        require(ownerOf(tokenId) == msg.sender, "ERC721Redeemable: You are not the owner of this token");
+        super.redeem(tokenId);
 	}
 
     function supportsInterface(bytes4 interfaceId)
