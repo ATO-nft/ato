@@ -30,5 +30,11 @@ You can check this NFT on [Āto NFT viewer](https://ato.network/Goerli/0x3ea641B
 ## Contact
 
 - Email: [julien@ato.network](mailto:julien@ato.network)
-- Discord: [https://discord.gg/2sFr3dqvfg](https://discord.gg/xw9dCeQ94Y)
+
 - Twitter: [https://twitter.com/julienbrg](https://twitter.com/julienbrg)
+
+- [Element](https://matrix.to/#/@julienbrg:matrix.org) (preferred)
+- [Twitter](https://twitter.com/julienbrg)
+- [Discord](https://discord.gg/xw9dCeQ94Y)
+- [LinkedIn](https://www.linkedin.com/in/julienberanger/)
+- [Email](mailto:julien@strat.cc)
