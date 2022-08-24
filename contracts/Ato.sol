@@ -4,24 +4,71 @@ pragma solidity 0.8.15;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+
 import "./ERC721RedeemableURIStorage.sol";
 import './ERC2981ContractWideRoyalties.sol';
+
+/// @title contract for ATO
+/// @author Olivier Fernandez / julien Béranger
+/// @notice create ERC721 token with IEP2981 and Redeeemable
 
 /// @custom:security-contact julien@ato.network
 contract Ato is ERC721, ERC721RedeemableURIStorage, ERC721Burnable, Ownable, ERC2981ContractWideRoyalties {
 
+	using Counters for Counters.Counter;
+
+	Counters.Counter private _tokenIdCounter;
+
+	/// @notice constructor
+	/// @param _name name of ERC721 token
+	/// @param _symbol symbol of ERC721 token
+	/// @param _mintNumber number of NFT to mint
+	/// @param _uri metadata of NFT when redeeemable
+	/// @param _uriRedeemed metadata of NFT when not redeeemable
+	/// @param _royalties resale rights percentage (using 2 decimals: 10000 = 100%, 150 = 1.5%, 0 = 0%)
 	constructor(
 		string memory _name,
 		string memory _symbol,
+		uint _mintNumber,
 		string memory _uri,
 		string memory _uriRedeemed,
 		uint256 _royalties
 	)
 	ERC721(_name, _symbol)
 	{
-		_safeMint(owner(), 1);
-		_setTokenURI(1, _uri, _uriRedeemed);
+		_mintBatch(_mintNumber, _uri, _uriRedeemed);
 		_setRoyalties(owner(), _royalties);
+	}
+
+	function totalSupply()
+		public
+		view
+		returns (uint256)
+	{
+		return _tokenIdCounter.current();
+	}
+
+	/// @notice mint NFT by batch
+	/// @param _number number of NFT to mint
+	function _mintBatch(uint _number, string memory _uri, string memory _uriRedeemed)
+		internal
+	{
+		uint current = _tokenIdCounter.current();
+		uint last = current + _number;
+
+		for (uint i = current; i < last; i++) {
+			_mintNFT(_uri, _uriRedeemed);
+		}
+	}
+
+	/// @notice mint NFT
+	function _mintNFT(string memory _uri, string memory _uriRedeemed)
+		internal
+	{
+		_tokenIdCounter.increment();
+		_safeMint(owner(), _tokenIdCounter.current());
+		_setTokenURI(_tokenIdCounter.current(), _uri, _uriRedeemed);
 	}
 
 	function _beforeTokenTransfer(address from, address to, uint256 tokenId)

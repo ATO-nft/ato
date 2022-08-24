@@ -24,7 +24,7 @@ abstract contract ERC721RedeemableURIStorage is ERC721, Redeemable {
 	function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
 		_requireMinted(tokenId);
 
-		string memory _tokenURIRedeemable = _tokenURIs[tokenId][REDEEMABLE]; //_tokenURIs(tokenId,0);
+		string memory _tokenURIRedeemable = _tokenURIs[tokenId][REDEEMABLE];
 		string memory base = _baseURI();
 		string memory _tokenURINotRedeemable = _tokenURIs[tokenId][NOT_REDEEMABLE];
 
