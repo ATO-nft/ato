@@ -1,54 +1,33 @@
 import { ethers } from "hardhat";
 const hre = require("hardhat");
-import { Web3Storage, Blob, File } from "web3.storage";
-import * as metadata from "../metadata/metadata.json";
+import { handleStorage } from "../metadata/handleStorage"
 
 async function main() {
 
-  const name = "Black thistle";
+  // You can edit this part
+  const author = "Julien";
+  const name = "Black Thistle";
   const symbol = "THISTLE";
+  const description = "I just love thisltes!"
+  const mint = 1;
+  const royalties = 8 * 100;
 
-  // handle metadata storage  
-  function getAccessToken() {
-    return process.env.WEB3STORAGE_TOKEN;
-  }
+  //const uri = handleStorage(name, royalties, author, description);
+  const uri = await handleStorage();
 
-  function makeStorageClient() {
-    return new Web3Storage({ token: getAccessToken() } as any);
-  }
+  // remove this one
+  console.log("done ✅", uri);
 
-  function makeFileObjects() {
-    const blob = new Blob([JSON.stringify(metadata)], {
-      type: "application/json",
-    });
+  // // deploy NFT contract
+  // const Ato = await ethers.getContractFactory("Ato");
+  // const ato = await Ato.deploy(name, symbol, mint, uri, uri, royalties);
+  // await ato.deployTransaction.wait(6);
+  // console.log("NFT contract deployed at", ato.address, " ✅");
 
-    const files = [
-      new File(["contents-of-file-1"], "plain-utf8.txt"),
-      new File([blob], "metadata.json"),
-    ];
-    return files;
-  }
-
-  async function storeFiles(files: any) {
-    const client = makeStorageClient();
-    const cid = await client.put(files);
-    return cid;
-  }
-
-  makeStorageClient();
-  const uri = (await storeFiles(makeFileObjects())) + "/metadata.json";
-  console.log("Storage done. Full URI:", "https://ipfs.io/ipfs/" + uri, " ✅");  
-
-  // deploy NFT contract
-  const Ato = await ethers.getContractFactory("Ato");
-  const ato = await Ato.deploy(name, symbol, uri, uri, 800);
-  await ato.deployTransaction.wait(6);
-  console.log("NFT contract deployed at", ato.address, " ✅");
-
-  // Etherscan verification
-  await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [ name, symbol, uri], });
-  console.log("Etherscan verification done. ✅");
-  console.log("Thanks for using Āto!");
+  // // Etherscan verification
+  // await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [name, symbol, mint, uri, uri, royalties], });
+  // console.log("Etherscan verification done. ✅");
+  // console.log("Thanks for using Āto!");
 }
 
 main().catch((error) => {
