@@ -41,7 +41,7 @@ async function main() {
 
   // deploy NFT contract
   const Ato = await ethers.getContractFactory("Ato");
-  const ato = await Ato.deploy(name, symbol, uri);
+  const ato = await Ato.deploy(name, symbol, uri, uri, 800);
   await ato.deployTransaction.wait(6);
   console.log("NFT contract deployed at", ato.address, " ✅");
 
