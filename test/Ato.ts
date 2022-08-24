@@ -13,7 +13,7 @@ describe("Ato", function () {
     const uri = "bafybeihjf5qkgkxepvs4mmmd77hsw2yw52py6j2blcl4tzjxgrn6aixs7a/metadata.json";
 
     const Ato = await ethers.getContractFactory("Ato");
-    const ato = await Ato.deploy(name, symbol, uri);
+    const ato = await Ato.deploy(name, symbol, uri, uri, 800);
     await ato.deployed();
 
     const atoAbi = [
