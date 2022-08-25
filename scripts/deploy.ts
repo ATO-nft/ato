@@ -6,14 +6,16 @@ async function main() {
 
   // You can edit this part
   const author = "Julien";
-  const name = "Black Thistle";
+  const name = "Black thistle";
   const symbol = "THISTLE";
-  const description = "I just love thisltes!"
+  const description = "Black thistle was created using go-pixel-art (https://github.com/fairhive-labs/go-pixelart)";
+  const mediaFile = "https://bafybeibghsiwvatdc67ow5vkqxbnm775dcralexliakwi6st5rln7xi7c4.ipfs.dweb.link/thistle-black-pixel.png";
+  const license = "CC0 1.0 Universal";
   const mint = 1;
   const royalties = 8 * 100;
 
   //const uri = handleStorage(name, royalties, author, description);
-  const uri = await handleStorage();
+  const uri = await handleStorage(name, author, description, mediaFile, license);
 
   // remove this one
   console.log("done ✅", uri);

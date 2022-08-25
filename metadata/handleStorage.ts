@@ -1,8 +1,6 @@
 import { Web3Storage, Blob, File } from "web3.storage";
-import * as metadata from "./metadata.json";
-
 //export function handleStorage(name, royalties, author, description) {
-export async function handleStorage() {
+export async function handleStorage(name, author, description) {
 
   /**
    * - edit the metadata
@@ -16,6 +14,18 @@ export async function handleStorage() {
    * - return the uri
    **/
 
+  const mediaFile = "https://bafybeibghsiwvatdc67ow5vkqxbnm775dcralexliakwi6st5rln7xi7c4.ipfs.dweb.link/thistle-black-pixel.png";
+
+  const license = "CC0 1.0 Universal";
+
+  const metadata = {
+    "name": name,
+    "author": author,
+    "description": description,
+    "image": mediaFile,
+    "license": license
+  }
+
   function getAccessToken() {
     return process.env.WEB3STORAGE_TOKEN;
   }
@@ -26,7 +36,7 @@ export async function handleStorage() {
 
   function makeFileObjects() {
     const blob = new Blob([JSON.stringify(metadata)], {
-      type: "application/json",
+        type: "application/json",
     });
 
     const files = [
