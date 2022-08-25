@@ -14,7 +14,7 @@ npx hardhat test
 
 ## Deploy
 
-- Copy the `.env.example` file, rename it `.env`, then add one of your wallets' private key, your own [Alchemy](https://alchemy.com/) project ID (full url), a [Web3.Storage](https://web3.storage/tokens/) API token, and an [Etherscan](https://etherscan.io/) API key.
+- Copy the `.env.example` file, rename it `.env`, then add one of your wallets' private key, your own [POKT Network](https://www.pokt.network/) endpoint, a [Web3.Storage](https://web3.storage/tokens/) API token, and an [Etherscan](https://etherscan.io/) API key.
 - Make sure you have a handful of Goerli ETH in this wallet.
 
 ```
