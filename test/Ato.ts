@@ -6,7 +6,7 @@ describe("Ato", function () {
 
   async function deployContractsFixture() {
     
-    const [issuer, bob, alice] = await ethers.getSigners();
+    const [issuer, acquirer] = await ethers.getSigners();
 
     const name = "Black Thistle";
     const symbol = "THISTLE";
@@ -18,7 +18,7 @@ describe("Ato", function () {
     const ato = await Ato.deploy(name, symbol, preMint, uri, uri, royalties);
     await ato.deployed();
 
-    return { issuer, bob, alice, ato, name, symbol, uri, preMint, royalties };
+    return { issuer, acquirer, ato, name, symbol, uri, preMint, royalties };
   }
 
   describe("Deployment", function () {
@@ -47,9 +47,9 @@ describe("Ato", function () {
 
   describe("Transfers", function () {
     it("Should transfer the NFT to Bob", async function () {
-      const { ato, issuer, bob } = await loadFixture(deployContractsFixture);
-      await ato.transferFrom(issuer.address, bob.address, 1)
-      expect(await ato.ownerOf(1)).to.equal(bob.address);
+      const { ato, issuer, acquirer } = await loadFixture(deployContractsFixture);
+      await ato.transferFrom(issuer.address, acquirer.address, 1)
+      expect(await ato.ownerOf(1)).to.equal(acquirer.address);
     });
   });
 });
