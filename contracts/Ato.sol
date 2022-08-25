@@ -9,11 +9,10 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "./ERC721RedeemableURIStorage.sol";
 import './ERC2981ContractWideRoyalties.sol';
 
-/// @title contract for ATO
-/// @author Olivier Fernandez / julien Béranger
-/// @notice create ERC721 token with IEP2981 and Redeeemable
+/// @title Āto ERC-721 contract
+/// @author Olivier Fernandez and Julien Béranger
+/// @notice Includes ERC-2981 and Redeeemable
 
-/// @custom:security-contact julien@ato.network
 contract Ato is ERC721, ERC721RedeemableURIStorage, ERC721Burnable, Ownable, ERC2981ContractWideRoyalties {
 
 	using Counters for Counters.Counter;
@@ -21,8 +20,8 @@ contract Ato is ERC721, ERC721RedeemableURIStorage, ERC721Burnable, Ownable, ERC
 	Counters.Counter private _tokenIdCounter;
 
 	/// @notice constructor
-	/// @param _name name of ERC721 token
-	/// @param _symbol symbol of ERC721 token
+	/// @param _name name of ERC-721 token
+	/// @param _symbol symbol of ERC-721 token
 	/// @param _mintNumber number of NFT to mint
 	/// @param _uri metadata of NFT when redeeemable
 	/// @param _uriRedeemed metadata of NFT when not redeeemable
@@ -49,8 +48,8 @@ contract Ato is ERC721, ERC721RedeemableURIStorage, ERC721Burnable, Ownable, ERC
 		return _tokenIdCounter.current();
 	}
 
-	/// @notice mint NFT by batch
-	/// @param _number number of NFT to mint
+	/// @notice mint in batch
+	/// @param _number number of NFTs to mint
 	function _mintBatch(uint _number, string memory _uri, string memory _uriRedeemed)
 		internal
 	{
