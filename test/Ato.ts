@@ -3,7 +3,7 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 
 /*
-  Ato standard contract : with resale rights, without redeemable
+  Ato standard contract : ERC721 with resale rights
 */
 describe("=== Ato ===", function () {
 
