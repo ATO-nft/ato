@@ -113,7 +113,7 @@ export async function handleStorage(name: any, author: any, description: any) {
   }
 
   const uri = (await storeFiles(makeFileObjects())) + "/metadata.json";
-  console.log("Metadata storage done. Full URI ✅", "https://ipfs.io/ipfs/" + uri)
+  console.log("Metadata storage done. ✅", "https://ipfs.io/ipfs/" + uri)
 
   return uri
 }
