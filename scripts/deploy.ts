@@ -23,7 +23,7 @@ async function main() {
 
   // Etherscan verification
   // await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [name, symbol, mint, uri, royalties], });
-  console.log("Source code: https://goerli.etherscan.io/address/"+ato.address,"#code")
+  console.log("Source code: https://goerli.etherscan.io/address/"+ato.address+"#code")
   console.log("Etherscan verification done. ✅")
   console.log("https://ato.network/Goerli/"+ato.address+"/1")
   console.log("Thanks for using Āto!")
