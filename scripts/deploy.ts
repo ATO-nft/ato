@@ -15,7 +15,7 @@ async function main() {
   const royalties = 8 * 100;
 
   //const uri = handleStorage(name, royalties, author, description);
-  const uri = await handleStorage(name, author, description, mediaFile, license);
+  const uri = await handleStorage(name, author, description);
 
   // remove this one
   console.log("done ✅", uri);
