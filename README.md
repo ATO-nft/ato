@@ -28,7 +28,17 @@ Copy the [`.env.example`](https://github.com/ATO-nft/ato/blob/main/.env.example)
 
 You don't need to add your own Etherscan API key because the contract is already verified, meaning the code will be available on Etherscan.
 
-## NFT setup
+You can go ahead and run:
+
+```shell
+npx hardhat run scripts/deploy.ts --network goerli
+```
+
+It will store your files on IPFS (Filecoin), deploy your NFT contract, and mint your NFT.
+
+You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0xbf44fD514572D3DF14b59B324f1C1ef0fBbaDE06/1). Your contract should be already [verified on Etherscan](https://goerli.etherscan.io/address/0xbf44fD514572D3DF14b59B324f1C1ef0fBbaDE06#code).
+
+#### NFT setup (optional)
 
 Get an IP license:
 
@@ -88,16 +98,6 @@ In `metadata/handleStorage.ts`, please make sure the machine-readable object (`l
     }]
 ```
 
-To deploy your NFT contract, just run:
-
-```shell
-npx hardhat run scripts/deploy.ts --network goerli
-```
-
-It will store your files on IPFS (Filecoin), deploy your NFT contract, and mint your NFT.
-
-You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0x7D0227F5Fc77b41Aa2Db3B017B74ee0358c78Aba/1). Your contract should be already [verified on Etherscan](https://goerli.etherscan.io/address/0x7D0227F5Fc77b41Aa2Db3B017B74ee0358c78Aba#code).
-
 #### Etherscan verification
 
 If want to make modifications on **[Ato.sol](https://github.com/ATO-nft/ato/blob/main/contracts/Ato.sol)**, the NFT Solidity contract, you need to:
@@ -124,7 +124,7 @@ npx hardhat run scripts/deploy.ts --network goerli
 
 To make your NFT redeemable, deploy `AtoRedeemable.sol` instead of `Ato.sol`. It's using the Redeemable NFT extension ([EIP-Redeemable](https://github.com/ATO-nft/redeemable/blob/main/eip-draft_redeemable.md)) also developed by [Āto](https://github.com/ATO-nft). It can be used if you want to enable people to redeem their NFT for physical objects, tickets, on-chain assets (DeFi), etc.
 
-**Please note the Redeemable NFT Extension has not been audited yet. Use at you own risks.**
+Please note the Redeemable NFT Extension has not been audited yet. **Use at you own risks.**
 
 ## Support
 
