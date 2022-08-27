@@ -28,28 +28,33 @@ Copy the [`.env.example`](https://github.com/ATO-nft/ato/blob/main/.env.example)
 
 You don't need to add your own Etherscan API key because the contract is already verified, meaning the code will be available on Etherscan.
 
-Optionally, you can shape your own NFT:
+## NFT setup
 
-- In the metadata folder, replace `thistle-black-pixel.jpg` with your own media file
-- In the `handleDeploy.ts` file, replace `thistle-black-pixel.jpg` with your own media file name
+Get an IP license:
+
 - Go to [https://ato.network/license](https://ato.network/license) and create an IP license for your artwork (use it in demo mode)
-- In the metadata folder, replace `thistle-test-IP-license.pdf` with your own license
-- In the `handleDeploy.ts` file, replace `thistle-test-IP-license.pdf` with your own license file name
 
-In the `deploy.ts`, you can change the value the values of these variables:
+In the `metadata` folder:
+
+- Replace `thistle-black-pixel.jpg` with your own media file name
+- Replace `thistle-test-IP-license.pdf` with your own license file name
+
+Then in `deploy.ts`, change the values of these variables:
 
 ```js
-///// Edit this part to shape your NFT. /////
+///// Edit this part to config your NFT. /////
+const mediaFileName = "thistle-black-pixel.jpg"; // replace with your own media file name
+const licenseFileName = "thistle-test-IP-license.pdf"; // replace with your own license file name
 const author = "Julien";
 const name = "Black thistle";
 const symbol = "THISTLE";
 const description =
   "Black thistle was created using go-pixel-art (https://github.com/fairhive-labs/go-pixelart)";
-const mint = 5; // number of editions
+const mint = 1; // number of editions
 const royalties = 8 * 100; // 8%
 ```
 
-In `deploy.ts`, please make sure the machine-readable object (`license_details`) within the `metadata` object is in coherence with your IP license:
+In `metadata/handleStorage.ts`, please make sure the machine-readable object (`license_details`) within the `metadata` object is in coherence with your IP license:
 
 ```json
 "license_details":[
@@ -83,23 +88,23 @@ In `deploy.ts`, please make sure the machine-readable object (`license_details`)
     }]
 ```
 
-Run this one to deploy your NFT contract:
+To deploy your NFT contract, just run:
 
 ```shell
 npx hardhat run scripts/deploy.ts --network goerli
 ```
 
-It will store yours files on IPFS (Filecoin), deploy your NFT contract, and mint your NFT.
+It will store your files on IPFS (Filecoin), deploy your NFT contract, and mint your NFT.
 
-You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0x572446b702B1aa74f2f7FAB11057A4DFb176Affd/1). Your contract should be already [verified on Etherscan](https://goerli.etherscan.io/address/0x572446b702B1aa74f2f7FAB11057A4DFb176Affd#code).
+You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0x7D0227F5Fc77b41Aa2Db3B017B74ee0358c78Aba/1). Your contract should be already [verified on Etherscan](https://goerli.etherscan.io/address/0x7D0227F5Fc77b41Aa2Db3B017B74ee0358c78Aba#code).
 
 #### Etherscan verification
 
 If want to make modifications on **[Ato.sol](https://github.com/ATO-nft/ato/blob/main/contracts/Ato.sol)**, the NFT Solidity contract, you need to:
 
 - Delete the `artifacts`, and `cache` folders
-- Add your [Etherscan](https://etherscan.io/) API key
-- Uncomment line 25 in `deploy.ts`:
+- Add your [Etherscan](https://etherscan.io/) API key to your `.env` file
+- Uncomment lines 26 and 27 in `deploy.ts`:
 
 ```js
 await hre.run("verify:verify", {
