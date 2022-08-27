@@ -46,8 +46,8 @@ Get an IP license:
 
 In the `metadata` folder:
 
-- Replace `thistle-black-pixel.jpg` with your own media file name
-- Replace `thistle-test-IP-license.pdf` with your own license file name
+- Replace `thistle-black-pixel.jpg` with your own media file
+- Replace `thistle-test-IP-license.pdf` with your own license file
 
 Then in `deploy.ts`, change the values of these variables:
 
