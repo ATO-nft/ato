@@ -13,7 +13,6 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 contract Ato is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, ERC2981ContractWideRoyalties {
 
 	using Counters for Counters.Counter;
-
 	Counters.Counter private _tokenIdCounter;
 
 	/// @notice constructor
