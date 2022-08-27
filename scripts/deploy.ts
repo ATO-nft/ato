@@ -4,13 +4,13 @@ import { handleStorage } from "../metadata/handleStorage"
 
 async function main() {
 
-  ///// You can edit this part to shape your NFT. /////
+  ///// Edit this part to shape your NFT. /////
   const author = "Julien"
   const name = "Black thistle"
   const symbol = "THISTLE"
   const description = "Black thistle was created using go-pixel-art (https://github.com/fairhive-labs/go-pixelart)"
-  const mint = 5
-  const royalties = 8 * 100
+  const mint = 10 // number of editions
+  const royalties = 8 * 100 // 8%
 
   const uri = await handleStorage(name, author, description)
 
