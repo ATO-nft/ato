@@ -5,18 +5,14 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-
 import './ERC2981ContractWideRoyalties.sol';
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-/// @title Āto ERC-721 contract
-/// @author Olivier Fernandez and Julien Béranger
-/// @notice Includes ERC-2981
+/// @title NFT contract
 
 contract Ato is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, ERC2981ContractWideRoyalties {
 
 	using Counters for Counters.Counter;
-
 	Counters.Counter private _tokenIdCounter;
 
 	/// @notice constructor
@@ -37,6 +33,10 @@ contract Ato is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, ERC2981Contra
 		_mintBatch(_mintNumber, _uri);
 		_setRoyalties(owner(), _royalties);
 	}
+
+	function _baseURI() internal pure override returns (string memory) {
+        return "https://ipfs.io/ipfs/";
+    }
 
 	function totalSupply()
 		public
