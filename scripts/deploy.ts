@@ -23,8 +23,8 @@ async function main() {
   console.log("NFT contract deployed. ✅", ato.address)
 
   // Etherscan verification
-  //await ato.deployTransaction.wait(6)
-  //await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [name, symbol, mint, uri, royalties], });
+  // await ato.deployTransaction.wait(6)
+  // await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [name, symbol, mint, uri, royalties], });
   console.log("Etherscan verification done. ✅")
   console.log("Source code: https://goerli.etherscan.io/address/" + ato.address + "#code")
   console.log("https://ato.network/Goerli/" + ato.address + "/1")

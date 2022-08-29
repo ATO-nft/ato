@@ -9,7 +9,6 @@ import './ERC2981ContractWideRoyalties.sol';
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 /// @title NFT contract
-
 contract Ato is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, ERC2981ContractWideRoyalties {
 
 	using Counters for Counters.Counter;
@@ -33,10 +32,6 @@ contract Ato is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, ERC2981Contra
 		_mintBatch(_mintNumber, _uri);
 		_setRoyalties(owner(), _royalties);
 	}
-
-	function _baseURI() internal pure override returns (string memory) {
-        return "https://ipfs.io/ipfs/";
-    }
 
 	function totalSupply()
 		public

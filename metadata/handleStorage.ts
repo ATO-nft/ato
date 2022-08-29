@@ -9,13 +9,13 @@ export async function handleStorage(name:any, author:any, description:any, media
     return new Web3Storage({ token: getAccessToken() } as any)
   }
 
-  async function getFiles (path: any) {
+  async function getFiles (path:any) {
     const File = await getFilesFromPath(path)
     //console.log(`read ${File.length} file(s) from ${path}`)
     return File
   }
 
-  async function storeLicense(license: any) {
+  async function storeLicense(license:any) {
     const client = makeStorageClient()
     const ip = await client.put(license)
     return ip;
@@ -24,7 +24,7 @@ export async function handleStorage(name:any, author:any, description:any, media
   // const mediaFile = "https://ipfs.io/ipfs/bafybeibghsiwvatdc67ow5vkqxbnm775dcralexliakwi6st5rln7xi7c4/thistle-black-pixel.png"
   //const mediaFileName = mediaFilePath.substring(mediaFilePath.lastIndexOf("/") + 1);
   const mediaFilePath = "./metadata/" + mediaFileName
-  const mediaFile: any = "https://ipfs.io/ipfs/" + (await storeLicense(await getFiles(mediaFilePath)) + "/" + mediaFileName)
+  const mediaFile:any = "https://ipfs.io/ipfs/" + (await storeLicense(await getFiles(mediaFilePath)) + "/" + mediaFileName)
   console.log("Media file stored. ✅",mediaFile, " ")
 
   // const license = "CC0 1.0 Universal"; // bad
@@ -32,7 +32,7 @@ export async function handleStorage(name:any, author:any, description:any, media
   // const licenseFileName = "/thistle-test-IP-license.pdf"
   const licenseFilePath = "./metadata/" + licenseFileName
   
-  const license: any = "https://ipfs.io/ipfs/" + (await storeLicense(await getFiles(licenseFilePath)) + "/" + licenseFileName)
+  const license:any = "https://ipfs.io/ipfs/" + (await storeLicense(await getFiles(licenseFilePath)) + "/" + licenseFileName)
   console.log("License stored. ✅", license)
 
   const metadata = {
@@ -97,11 +97,11 @@ export async function handleStorage(name:any, author:any, description:any, media
   async function storeFiles(files: any) {
     const client = makeStorageClient()
     const cid = await client.put(files)
-    return cid;
+    return "https://ipfs.io/ipfs/" + cid;
   }
 
   const uri = (await storeFiles(makeFileObjects())) + "/metadata.json";
-  console.log("Metadata storage done. ✅", "https://ipfs.io/ipfs/" + uri)
+  console.log("Metadata storage done. ✅", uri)
 
   return uri
 }
