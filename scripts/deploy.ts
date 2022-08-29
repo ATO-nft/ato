@@ -20,15 +20,16 @@ async function main() {
   // deploy NFT contract
   const Ato = await ethers.getContractFactory("Ato")
   const ato = await Ato.deploy(name, symbol, mint, uri, royalties)
+  await ato.deployed();
   console.log("NFT contract deployed. ✅", ato.address)
 
   // Etherscan verification
-  // await ato.deployTransaction.wait(6)
-  // await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [name, symbol, mint, uri, royalties], });
+  //await ato.deployTransaction.wait(6)
+  //await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [name, symbol, mint, uri, royalties], });
   console.log("Etherscan verification done. ✅")
   console.log("Source code: https://goerli.etherscan.io/address/" + ato.address + "#code")
   console.log("https://ato.network/Goerli/" + ato.address + "/1")
-  console.log("OpenSea URL: " + "https://testnets.opensea.io/asset/goerli/" + ato.address + "/1")
+  //console.log("OpenSea URL: " + "https://testnets.opensea.io/asset/goerli/" + ato.address + "/1")
   console.log("Thanks for using Āto!")
 }
 

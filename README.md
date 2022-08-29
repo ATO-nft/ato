@@ -36,7 +36,7 @@ npx hardhat run scripts/deploy.ts --network goerli
 
 It will store your files on IPFS (Filecoin), deploy your NFT contract, and mint your NFT.
 
-You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0xbf44fD514572D3DF14b59B324f1C1ef0fBbaDE06/1). Your contract should be already [verified on Etherscan](https://goerli.etherscan.io/address/0xbf44fD514572D3DF14b59B324f1C1ef0fBbaDE06#code).
+You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0xa07be884052Eb1f7853eBF6Dc63b33Ba1fc6AA49/1). Your contract should be already [verified on Etherscan](https://goerli.etherscan.io/address/0xa07be884052Eb1f7853eBF6Dc63b33Ba1fc6AA49#code).
 
 #### NFT setup (optional)
 
@@ -98,6 +98,31 @@ In `metadata/handleStorage.ts`, please make sure the machine-readable object (`l
     }]
 ```
 
+Then you can deploy on Goerli:
+
+```shell
+npx hardhat run scripts/deploy.ts --network goerli
+```
+
+Or deploy on Polygon:
+
+```shell
+npx hardhat run scripts/deploy.ts --network polygon
+```
+
+#### Transfer your NFT
+
+Once you're done with the deployment, you can send your NFT to a friend!
+
+- In `transfer.ts`, replace the contract address (line 5)
+- Paste the recipient address (line 13)
+
+Then:
+
+```shell
+npx hardhat run scripts/transfer.ts --network goerli
+```
+
 #### Etherscan verification
 
 If want to make modifications on **[Ato.sol](https://github.com/ATO-nft/ato/blob/main/contracts/Ato.sol)**, the NFT Solidity contract, you need to:
@@ -112,12 +137,6 @@ await hre.run("verify:verify", {
   address: ato.address,
   constructorArguments: [name, symbol, mint, uri, royalties],
 });
-```
-
-Then run:
-
-```shell
-npx hardhat run scripts/deploy.ts --network goerli
 ```
 
 #### Redeemable
