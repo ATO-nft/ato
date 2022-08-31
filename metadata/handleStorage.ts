@@ -1,6 +1,8 @@
 import { Web3Storage, Blob, File , getFilesFromPath } from "web3.storage";
 export async function handleStorage(name:any, author:any, description:any, mediaFileName:any, licenseFileName:any) {
 
+  // create a Web3.Storage client object
+
   function getAccessToken() {
     return process.env.WEB3STORAGE_TOKEN
   }
@@ -9,31 +11,38 @@ export async function handleStorage(name:any, author:any, description:any, media
     return new Web3Storage({ token: getAccessToken() } as any)
   }
 
+  // store the media file
+
   async function getFiles (path:any) {
     const File = await getFilesFromPath(path)
     //console.log(`read ${File.length} file(s) from ${path}`)
     return File
   }
 
-  async function storeLicense(license:any) {
+  async function storeFiles(license:any) {
     const client = makeStorageClient()
     const ip = await client.put(license)
     return ip;
   }
 
-  // const mediaFile = "https://ipfs.io/ipfs/bafybeibghsiwvatdc67ow5vkqxbnm775dcralexliakwi6st5rln7xi7c4/thistle-black-pixel.png"
+  //const mediaFile = "https://ipfs.io/ipfs/bafybeibghsiwvatdc67ow5vkqxbnm775dcralexliakwi6st5rln7xi7c4/thistle-black-pixel.png"
   //const mediaFileName = mediaFilePath.substring(mediaFilePath.lastIndexOf("/") + 1);
   const mediaFilePath = "./metadata/" + mediaFileName
-  const mediaFile:any = "https://ipfs.io/ipfs/" + (await storeLicense(await getFiles(mediaFilePath)) + "/" + mediaFileName)
+  const mediaFile:any = "https://ipfs.io/ipfs/" + (await storeFiles(await getFiles(mediaFilePath)) + "/" + mediaFileName)
   console.log("Media file stored. ✅",mediaFile, " ")
+
+
+  // store the IP license 
 
   // const license = "CC0 1.0 Universal"; // bad
   // const license = "https://ipfs.io/ipfs/bafybeihzpdxi43xtpbemmhi2ry5wqaj2iangccyumbyeis4bsfykzljazi/thistle-test-IP-license.pdf";
   // const licenseFileName = "/thistle-test-IP-license.pdf"
   const licenseFilePath = "./metadata/" + licenseFileName
-  
-  const license:any = "https://ipfs.io/ipfs/" + (await storeLicense(await getFiles(licenseFilePath)) + "/" + licenseFileName)
+  const license:any = "https://ipfs.io/ipfs/" + (await storeFiles(await getFiles(licenseFilePath)) + "/" + licenseFileName)
   console.log("License stored. ✅", license)
+
+
+  // edit the metadata
 
   const metadata = {
     "name": name,
@@ -79,8 +88,11 @@ export async function handleStorage(name:any, author:any, description:any, media
       {
         "trait_type":"merchandisingRights",
         "value":"true"
-      }]
-    };
+      }
+    ]
+  };
+  
+  // store the metadata
 
   function makeFileObjects() {
     const blob = new Blob([JSON.stringify(metadata)], {
@@ -94,13 +106,13 @@ export async function handleStorage(name:any, author:any, description:any, media
     return files
   }
 
-  async function storeFiles(files: any) {
+  async function storeMetadata(files: any) {
     const client = makeStorageClient()
     const cid = await client.put(files)
     return "https://ipfs.io/ipfs/" + cid;
   }
 
-  const uri = (await storeFiles(makeFileObjects())) + "/metadata.json";
+  const uri = (await storeMetadata(makeFileObjects())) + "/metadata.json";
   console.log("Metadata storage done. ✅", uri)
 
   return uri
