@@ -1,6 +1,7 @@
 import { ethers } from "hardhat";
 const hre = require("hardhat");
 import { handleStorage } from "../metadata/handleStorage"
+const color = require("cli-color")
 
 async function main() {
 
@@ -21,7 +22,8 @@ async function main() {
   const Ato = await ethers.getContractFactory("Ato")
   const ato = await Ato.deploy(name, symbol, mint, uri, royalties)
   await ato.deployed();
-  console.log("NFT contract deployed. ✅", ato.address)
+  var msg = color.xterm(39).bgXterm(128);
+  console.log("NFT contract deployed. ✅", msg(ato.address))
 
   // Etherscan verification
   //await ato.deployTransaction.wait(6)
