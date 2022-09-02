@@ -41,7 +41,7 @@ describe("=== Ato ===", function () {
     });
     it("Check uri", async function () {
       const { ato, uri } = await loadFixture(deployContractsFixture);
-      expect(await ato.tokenURI(1)).to.equal("https://ipfs.io/ipfs/"+uri);
+      expect(await ato.tokenURI(1)).to.equal(uri);
     });
   });
 
