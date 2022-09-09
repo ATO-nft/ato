@@ -95,8 +95,8 @@ async function main() {
   console.log("NFT contract deployed. ✅", msg(thistle.address))
 
   // Etherscan verification
-  await thistle.deployTransaction.wait(6)
-  await hre.run("verify:verify", { network: "goerli", address: thistle.address, constructorArguments: [name, symbol, uri], });
+  // await thistle.deployTransaction.wait(6)
+  // await hre.run("verify:verify", { network: "goerli", address: thistle.address, constructorArguments: [name, symbol, uri], });
   console.log("Etherscan verification done. ✅")
   console.log("Source code: https://goerli.etherscan.io/address/" + thistle.address + "#code")
   console.log("https://ato.network/Goerli/" + thistle.address + "/1")

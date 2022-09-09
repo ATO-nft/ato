@@ -84,6 +84,12 @@ contract AtoRedeemable is ERC721, RedeemableURIStorage, ERC721Burnable, Ownable,
 		super._afterTokenTransfer(from, to, tokenId);
 	}
 
+	function burn(uint256 tokenId) public override {
+		require(_exists(tokenId), "Redeem query for nonexistent token");
+		require(ownerOf(tokenId) == msg.sender, "You are not the owner of this token");
+		_burn(tokenId);
+	}
+	
 	function _burn(uint256 tokenId)
 		internal
 		override(ERC721, RedeemableURIStorage)
