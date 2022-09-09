@@ -19,6 +19,12 @@ contract Thistle is ERC721, ERC721URIStorage, ERC721Burnable {
 		_setTokenURI(1, _uri);
 	}
 
+	function burn(uint256 tokenId) public override {
+		require(_exists(tokenId), "Redeem query for nonexistent token");
+		require(ownerOf(tokenId) == msg.sender, "You are not the owner of this token");
+		_burn(tokenId);
+	}
+
 	function _burn(uint256 tokenId)
 		internal
 		override(ERC721, ERC721URIStorage)
