@@ -145,6 +145,16 @@ To make your NFT redeemable, deploy `AtoRedeemable.sol` instead of `Ato.sol`. It
 
 Please note the Redeemable NFT Extension has not been audited yet. **Use at you own risks.**
 
+## Thisle NFT contract
+
+[`Thistle.sol`](https://github.com/ATO-nft/ato/blob/main/contracts/Thistle.sol) is a minimalist NFT contract used for tests.
+
+To deploy one, just:
+
+```shell
+npx hardhat run scripts/deployThistle.ts --network goerli
+```
+
 ## Support
 
 You can contact us via [Element](https://matrix.to/#/@julienbrg:matrix.org) (preferred), [Twitter](https://twitter.com/julienbrg), [Discord](https://discord.gg/xw9dCeQ94Y), [LinkedIn](https://www.linkedin.com/in/julienberanger/) or [email](mailto:julien@ato.network).
