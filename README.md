@@ -42,7 +42,8 @@ You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0xa07be884
 
 Get an IP license:
 
-- Go to [https://ato.network/license](https://ato.network/license) and create an IP license for your artwork (use it in demo mode)
+- Go to [https://ato.network/license](https://ato.network/license) and create an IP license for your artwork.
+- Add the license file name to the `makeLicense.ts` file.
 
 In the `metadata` folder:
 
@@ -112,7 +113,7 @@ npx hardhat run scripts/deploy.ts --network polygon
 
 #### Transfer your NFT
 
-Once you're done with the deployment, you can send your NFT to a friend!
+Once you're done with the deployment, you can transfer the NFT.
 
 - In `transfer.ts`, replace the contract address (line 5)
 - Paste the recipient address (line 13)
@@ -145,7 +146,7 @@ To make your NFT redeemable, deploy `AtoRedeemable.sol` instead of `Ato.sol`. It
 
 Please note the Redeemable NFT Extension has not been audited yet. **Use at you own risks.**
 
-## Thisle NFT contract
+#### Thisle NFT contract
 
 [`Thistle.sol`](https://github.com/ATO-nft/ato/blob/main/contracts/Thistle.sol) is a minimalist NFT contract used for tests.
 
