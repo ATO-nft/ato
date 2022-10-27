@@ -1,9 +1,11 @@
 import { ethers } from "hardhat";
 const fs = require('fs');
+import * as store from '../store.json'
 
 async function main() {
 
-  const nftContractAddress = "0xa07be884052Eb1f7853eBF6Dc63b33Ba1fc6AA49" // replace with your own nft contract address
+  // const nftContractAddress = "0xa07be884052Eb1f7853eBF6Dc63b33Ba1fc6AA49" // replace with your own nft contract address
+  const nftContractAddress = store.contractAddress // takes the address of the contract you just deployed
   console.log("Interacting with " + nftContractAddress + " NFT contract")
 
   //https://docs.ethers.io/v5/api/signer/#Wallet

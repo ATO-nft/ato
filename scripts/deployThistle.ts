@@ -2,6 +2,7 @@ import { ethers } from "hardhat";
 const hre = require("hardhat");
 const color = require("cli-color")
 import { Web3Storage, Blob, File , getFilesFromPath } from "web3.storage";
+const fs = require("fs");
 
 // npx hardhat run scripts/deployThistle.ts --network goerli
 
@@ -100,6 +101,13 @@ async function main() {
   console.log("Etherscan verification done. ✅")
   console.log("Source code: https://goerli.etherscan.io/address/" + thistle.address + "#code")
   console.log("https://ato.network/Goerli/" + thistle.address + "/1")
+
+  // Write the contract address to store.json
+  fs.writeFileSync(
+    "store.json",
+    JSON.stringify({contractAddress: thistle.address}, undefined, 2)
+  );
+
   console.log("Thanks for using Āto!")
 }
 

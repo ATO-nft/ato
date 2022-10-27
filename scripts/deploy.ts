@@ -3,6 +3,7 @@ const hre = require("hardhat");
 import { handleStorage } from "../metadata/handleStorage"
 import { makeLicense } from "../metadata/makeLicense"
 const color = require("cli-color")
+const fs = require("fs");
 
 async function main() {
 
@@ -35,6 +36,15 @@ async function main() {
   console.log("Source code: https://goerli.etherscan.io/address/" + ato.address + "#code")
   console.log("https://ato.network/Goerli/" + ato.address + "/1")
   //console.log("OpenSea URL: " + "https://testnets.opensea.io/asset/goerli/" + ato.address + "/1")
+
+  // Write the contract address to store.json
+  fs.writeFileSync(
+    "store.json",
+    JSON.stringify({contractAddress: ato.address}, undefined, 2)
+  );
+
+
+
   console.log("Thanks for using Āto!")
 }
 
