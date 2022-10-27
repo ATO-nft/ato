@@ -1,4 +1,5 @@
 import { Web3Storage, Blob, File , getFilesFromPath } from "web3.storage";
+
 export async function handleStorage(name:any, author:any, description:any, mediaFileName:any, licenseFileName:any) {
 
   // create a Web3.Storage client object
@@ -40,7 +41,6 @@ export async function handleStorage(name:any, author:any, description:any, media
   const licenseFilePath = "./metadata/" + licenseFileName
   const license:any = "https://ipfs.io/ipfs/" + (await storeFiles(await getFiles(licenseFilePath)) + "/" + licenseFileName)
   console.log("License stored. ✅", license)
-
 
   // edit the metadata
 
