@@ -1,6 +1,6 @@
 import { Web3Storage, Blob, File , getFilesFromPath } from "web3.storage";
 
-export async function handleStorage(name:any, author:any, description:any, mediaFileName:any, licenseFileName:any) {
+export async function handleStorage(name:any, author:any, description:any, mediaFileName:any, licenseFileName:any, royalties:any) {
 
   // create a Web3.Storage client object
 
@@ -53,7 +53,7 @@ export async function handleStorage(name:any, author:any, description:any, media
     "attributes":[
       {
         "trait_type":"Resale rights (%)",
-        "value":"8"
+        "value": royalties
       },
       {
         "trait_type":"View IP licence",

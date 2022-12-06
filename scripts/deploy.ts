@@ -14,25 +14,25 @@ async function main() {
   const symbol = "THISTLE"
   const description = "Black thistle was created using go-pixel-art (https://github.com/fairhive-labs/go-pixelart)."
   const mint = 1 // number of editions
-  const royalties = 8 * 100 // 8%
+  const royalties = 8 // 8%
 
   // Create an IP license
   const licenseFileName = await makeLicense()
 
   // Store the metadata and associated files
-  const uri = await handleStorage(name, author, description, mediaFileName, licenseFileName)
+  const uri = await handleStorage(name, author, description, mediaFileName, licenseFileName, royalties)
 
   // deploy NFT contract
   const Ato = await ethers.getContractFactory("Ato")
-  const ato = await Ato.deploy(name, symbol, mint, uri, royalties)
+  const ato = await Ato.deploy(name, symbol, mint, uri, royalties * 100)
   await ato.deployed();
   var msg = color.xterm(39).bgXterm(128);
   console.log("NFT contract deployed. ✅", msg(ato.address))
 
-  // Etherscan verification: uncomment the 2 following lines if you modify the Solidity contract
-  console.log("Etherscan verification in progress...")
-  await ato.deployTransaction.wait(6)
-  await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [name, symbol, mint, uri, royalties], });
+  // Etherscan verification: uncomment the 3 following lines if you modify the Solidity contract
+  // console.log("Etherscan verification in progress...")
+  // await ato.deployTransaction.wait(6)
+  // await hre.run("verify:verify", { network: "goerli", address: ato.address, constructorArguments: [name, symbol, mint, uri, royalties], });
   console.log("Etherscan verification done. ✅")
   console.log("Source code: https://goerli.etherscan.io/address/" + ato.address + "#code")
   console.log("https://ato.network/Goerli/" + ato.address + "/1")
