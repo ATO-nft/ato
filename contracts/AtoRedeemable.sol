@@ -70,18 +70,18 @@ contract AtoRedeemable is ERC721, RedeemableURIStorage, ERC721Burnable, Ownable,
 		_setTokenURI(_tokenIdCounter.current(), _uri, _uriRedeemed);
 	}
 
-	function _beforeTokenTransfer(address from, address to, uint256 tokenId)
+	function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize)
 		internal
 		override(ERC721)
 	{
-		super._beforeTokenTransfer(from, to, tokenId);
+		super._beforeTokenTransfer(from, to, tokenId, batchSize);
 	}
 
-	function _afterTokenTransfer(address from, address to, uint256 tokenId)
+	function _afterTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize)
 		internal
 		override(ERC721)
 	{
-		super._afterTokenTransfer(from, to, tokenId);
+		super._afterTokenTransfer(from, to, tokenId, batchSize);
 	}
 
 	function burn(uint256 tokenId) public override {
