@@ -18,8 +18,6 @@ npx hardhat test
 
 ## Deploy
 
-[Goerli](https://goerli.net/) (testnet) is currently the only supported network.
-
 Copy the [`.env.example`](https://github.com/ATO-nft/ato/blob/main/.env.example) file and rename it `.env`. In this `.env` file, you want to:
 
 - Add one of your wallets' private key ([MetaMask](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key) private key export). It's recommended to create a fresh address, then go grab a handful of Goerli ETH using [this faucet](https://goerlifaucet.com/)
@@ -34,7 +32,7 @@ You can go ahead and run:
 npx hardhat run scripts/deploy.ts --network goerli
 ```
 
-It will store your files on IPFS (Filecoin), deploy your NFT contract, and mint your NFT.
+It will store your files on Web3 Storage (IPFS + Filecoin), deploy your NFT contract, and mint your NFT.
 
 You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0xa07be884052Eb1f7853eBF6Dc63b33Ba1fc6AA49/1). Your contract should be already [verified on Etherscan](https://goerli.etherscan.io/address/0xa07be884052Eb1f7853eBF6Dc63b33Ba1fc6AA49#code).
 
@@ -55,14 +53,13 @@ Then in `deploy.ts`, change the values of these variables:
 ```js
 ///// Edit this part to config your NFT. /////
 const mediaFileName = "thistle-black-pixel.jpg"; // replace with your own media file name
-const licenseFileName = "thistle-test-IP-license.pdf"; // replace with your own license file name
 const author = "Julien";
 const name = "Black thistle";
 const symbol = "THISTLE";
 const description =
-  "Black thistle was created using go-pixel-art (https://github.com/fairhive-labs/go-pixelart)";
+  "Black thistle was created using go-pixel-art (https://github.com/fairhive-labs/go-pixelart).";
 const mint = 1; // number of editions
-const royalties = 8 * 100; // 8%
+const royalties = 8; // %
 ```
 
 In `metadata/handleStorage.ts`, please make sure the machine-readable object (`license_details`) within the `metadata` object is in coherence with your IP license:
@@ -99,13 +96,13 @@ In `metadata/handleStorage.ts`, please make sure the machine-readable object (`l
     }]
 ```
 
-Then you can deploy on Goerli:
+Then you can deploy to Goerli:
 
 ```shell
 npx hardhat run scripts/deploy.ts --network goerli
 ```
 
-Or deploy on Polygon:
+Or deploy to Polygon:
 
 ```shell
 npx hardhat run scripts/deploy.ts --network polygon
@@ -158,4 +155,4 @@ npx hardhat run scripts/deployThistle.ts --network goerli
 
 ## Support
 
-You can contact us via [Element](https://matrix.to/#/@julienbrg:matrix.org) (preferred), [Twitter](https://twitter.com/julienbrg), [Discord](https://discord.gg/xw9dCeQ94Y), [LinkedIn](https://www.linkedin.com/in/julienberanger/) or [email](mailto:julien@ato.network).
+You can contact us via [Element](https://matrix.to/#/@julienbrg:matrix.org), [Twitter](https://twitter.com/julienbrg), [Telegram](https://t.me/julienbrg), [Discord](https://discord.gg/xw9dCeQ94Y), [LinkedIn](https://www.linkedin.com/in/julienberanger/) or [email](mailto:julien@ato.network).
