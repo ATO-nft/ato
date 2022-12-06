@@ -21,7 +21,7 @@ npx hardhat test
 Copy the [`.env.example`](https://github.com/ATO-nft/ato/blob/main/.env.example) file and rename it `.env`. In this `.env` file, you want to:
 
 - Add one of your wallets' private key ([MetaMask](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key) private key export). It's recommended to create a fresh address, then go grab a handful of Goerli ETH using [this faucet](https://goerlifaucet.com/)
-- Add your own [POKT Network](https://www.pokt.network/) endpoint
+- Add your own endpoint URL ([POKT](https://www.pokt.network/), Infura, Alchemy, ...)
 - Add your [Web3.Storage](https://web3.storage/tokens/) API token
 
 You don't need to add your own Etherscan API key because the contract is already verified, meaning the code will be available on Etherscan.
@@ -32,7 +32,7 @@ You can go ahead and run:
 npx hardhat run scripts/deploy.ts --network goerli
 ```
 
-It will store your files on Web3 Storage (IPFS + Filecoin), deploy your NFT contract, and mint your NFT.
+It will store your files on [Web3 Storage](https://web3.storage) (IPFS + Filecoin), deploy your NFT contract, and mint your NFT.
 
 You can view this NFT on [Āto NFT viewer](https://ato.network/Goerli/0xa07be884052Eb1f7853eBF6Dc63b33Ba1fc6AA49/1). Your contract should be already [verified on Etherscan](https://goerli.etherscan.io/address/0xa07be884052Eb1f7853eBF6Dc63b33Ba1fc6AA49#code).
 
@@ -62,7 +62,7 @@ const mint = 1; // number of editions
 const royalties = 8; // %
 ```
 
-In `metadata/handleStorage.ts`, please make sure the machine-readable object (`license_details`) within the `metadata` object is in coherence with your IP license:
+**In `metadata/handleStorage.ts`, please make sure the machine-readable object (`license_details`) within the `metadata` object is in coherence with your IP license**:
 
 ```json
 "license_details":[
