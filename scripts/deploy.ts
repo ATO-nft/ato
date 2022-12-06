@@ -14,7 +14,7 @@ async function main() {
   const symbol = "THISTLE"
   const description = "Black thistle was created using go-pixel-art (https://github.com/fairhive-labs/go-pixelart)."
   const mint = 1 // number of editions
-  const royalties = 8 // 8%
+  const royalties = 8 // %
 
   // Create an IP license
   const licenseFileName = await makeLicense()
