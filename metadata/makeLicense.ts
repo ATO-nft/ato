@@ -2,9 +2,9 @@ export async function makeLicense() {
 
   console.log("Creating IP license...")
 
-  // To do: replace by a call to Āto API
-  const licenseFileName = "thistle-test-IP-license.pdf" // replace with your own license file name
+  // TODO: replace by a call to Āto API
+  const licenseFileName = "thistle-test-IP-license.pdf" // replace with your own license file name. The file must be located in the /metadata directory.
 
-  console.log("licenseFileName:", licenseFileName)
+  console.log("License File Name:", licenseFileName)
   return licenseFileName
 }

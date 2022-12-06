@@ -7,39 +7,11 @@
     "attributes":[
          {
              "trait_type":"Resale rights (%)",
-             "value":"7.5"
+             "value":"8"
          },
          {
              "trait_type":"View IP licence",
-             "value":"https://ipfs.io/<LICENSE_CID>"
-         },
-         {
-             "trait_type":"Exclusivity",
-             "value":"false"
-         },
-         {
-             "trait_type":"Private Use",
-             "value":"true"
-         },
-         {
-             "trait_type":"Display on marketplaces",
-             "value":"true"
-         },
-         {
-             "trait_type":"Display on every media (non commercial)",
-             "value":"true"
-         },
-         {
-             "trait_type":"Right to adapt",
-             "value":"false"
-         },
-         {
-             "trait_type":"Right to add a logo",
-             "value":"false"
-         },
-         {
-             "trait_type":"Merchandising rights",
-             "value":"false"
+             "value":"https://ipfs.io/ipfs/<LICENSE_CID>"
          }
      ],
      "license_details":[

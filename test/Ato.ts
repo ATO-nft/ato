@@ -5,7 +5,7 @@ import { ethers } from "hardhat";
 /*
   Ato standard contract : ERC721 with resale rights
 */
-describe("=== Ato ===", function () {
+describe("=== Āto ===", function () {
 
   async function deployContractsFixture() {
 

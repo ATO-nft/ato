@@ -53,7 +53,7 @@ export async function handleStorage(name:any, author:any, description:any, media
     "attributes":[
       {
         "trait_type":"Resale rights (%)",
-        "value":"10"
+        "value":"8"
       },
       {
         "trait_type":"View IP licence",
